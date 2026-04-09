@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-// Check of er een ID is meegegeven
+// Check if there is an 'id' parameter in the URL, if so, fetch the corresponding client's data
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "SELECT * FROM new1 WHERE StudentID = $id";

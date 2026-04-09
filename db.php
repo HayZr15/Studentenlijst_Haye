@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "websitedb_haye";
 
-// De connectie maken
+// Maaking the connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Checken of de verbinding werkt

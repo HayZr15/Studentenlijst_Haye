@@ -1,11 +1,11 @@
 <?php
-// Stap 1: De databaseverbinding ophalen uit een extern bestand
+// Step 1: Include the database connection file
 include 'db.php'; 
 
-// Stap 2: SQL-query voorbereiden om alle gegevens uit de tabel 'new1' te halen
+// Step 2: Prepare the SQL query to fetch all clients from the 'new1' table
 $sql = "SELECT * FROM new1";
 
-// Stap 3: De query uitvoeren op de database
+// Step 3: Execute the query
 $result = $conn->query($sql); 
 ?>
 
