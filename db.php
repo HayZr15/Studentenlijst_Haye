@@ -1,16 +1,14 @@
 <?php
-/* English comments for AVO English requirements */
-// Connection details for XAMPP
-$host = "localhost";
-$user = "root";
-$pass = "";
+$servername = "localhost";
+$username = "root";
+$password = "";
 $dbname = "websitedb_haye";
 
-// Create the connection
-$db = new mysqli($host, $user, $pass, $dbname);
+// De connectie maken
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check if the connection works
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
+// Checken of de verbinding werkt
+if ($conn->connect_error) {
+    die("Verbinding mislukt: " . $conn->connect_error);
 }
 ?>

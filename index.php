@@ -1,7 +1,12 @@
 <?php
-include 'db.php';
-$sql = "SELECT * FROM new1"; // We houden 'new1' aan omdat je database tabel zo heet
-$result = $conn->query($sql);
+// Stap 1: De databaseverbinding ophalen uit een extern bestand
+include 'db.php'; 
+
+// Stap 2: SQL-query voorbereiden om alle gegevens uit de tabel 'new1' te halen
+$sql = "SELECT * FROM new1";
+
+// Stap 3: De query uitvoeren op de database
+$result = $conn->query($sql); 
 ?>
 
 <!DOCTYPE html>
@@ -35,11 +40,14 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while($row = $result->fetch_assoc()): ?>
+                    <?php 
+                    // Stap 4: Door alle resultaten heen lopen (loop) en deze in de tabel tonen
+                    while($row = $result->fetch_assoc()): 
+                    ?>
                     <tr>
                         <td><?php echo $row['StudentID']; ?></td>
                         <td><?php echo $row['Voornaam']; ?></td>
-                        <td><?php echo $row['Tussenvoegsel']; ?></td>
+                        <td><?php echo isset($row['Tussenvoegsel']) ? $row['Tussenvoegsel'] : '-'; ?></td>
                         <td><?php echo $row['Achternaam']; ?></td>
                         <td><?php echo $row['Email']; ?></td>
                         <td>
