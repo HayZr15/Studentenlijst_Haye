@@ -1,23 +1,37 @@
 <?php
+// Step 1: Include database connection
 include('db.php');
 
-// Only process the data if the request method is POST
+// Step 2: Check if the form was submitted via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Map POST data to variables
+    
+    // Collect data from the form (must match the 'name' attributes in toevoegen.php)
     $v = $_POST['v_naam'];
+    $t = $_POST['t_voegsel'];
     $a = $_POST['a_naam'];
     $e = $_POST['e_mail'];
 
-    // Prepare SQL statement using $conn
-    $stmt = $conn->prepare("INSERT INTO new1 (Voornaam, Achternaam, Email) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $v, $a, $e);
+    // Step 3: Prepare the SQL statement using $conn (from db.php)
+    // We use 4 placeholders (?) for 4 strings ("ssss")
+    $stmt = $conn->prepare("INSERT INTO new1 (Voornaam, Tussenvoegsel, Achternaam, Email) VALUES (?, ?, ?, ?)");
+    
+    // Bind the variables to the prepared statement
+    $stmt->bind_param("ssss", $v, $t, $a, $e);
 
-    // If successful, return to the overview page
+    // Step 4: Execute the query and check for success
     if($stmt->execute()) { 
+        // Success: redirect to overview page
         header("Location: index.php"); 
         exit();
     } else {
-        echo "Error saving data: " . $conn->error;
+        // Error: show what went wrong
+        echo "Database Error: " . $conn->error;
     }
+
+    // Close statement
+    $stmt->close();
 }
+
+// Close connection
+$conn->close();
 ?>
